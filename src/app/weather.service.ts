@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   search(term: string) {
-    return 'weather search result';
+    return this.http.get('https://api.weatherapi.com/v1/current.json', {
+      params: {
+        key: '2a6ac9531a3b40cfb70194215230701',
+        q: term,
+        aqi: 'yes',
+      },
+    });
   }
 }

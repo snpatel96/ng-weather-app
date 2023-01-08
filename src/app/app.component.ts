@@ -7,9 +7,12 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  weatherData!: {};
+
   constructor(private weatherService: WeatherService) {}
   onTerm(term: string) {
-    const results = this.weatherService.search(term);
-    console.log(results);
+    this.weatherService
+      .search(term)
+      .subscribe((response) => (this.weatherData = response));
   }
 }
