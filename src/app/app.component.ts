@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WeatherService } from './weather.service';
+import { WeatherDataResponse, WeatherService } from './weather.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,14 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  weatherData!: {};
+  weatherData!: WeatherDataResponse;
 
   constructor(private weatherService: WeatherService) {}
   onTerm(term: string) {
     this.weatherService
       .search(term)
-      .subscribe((response) => (this.weatherData = response));
+      .subscribe(
+        (response: WeatherDataResponse) => (this.weatherData = response)
+      );
   }
 }
