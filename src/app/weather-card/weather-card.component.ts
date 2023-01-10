@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { WeatherDataResponse } from '../weather.service';
+import { countryToAlpha2 } from 'country-to-iso';
 
 @Component({
   selector: 'app-weather-card',
@@ -8,4 +9,5 @@ import { WeatherDataResponse } from '../weather.service';
 })
 export class WeatherCardComponent {
   @Input() weatherData!: WeatherDataResponse;
+  countryCode = countryToAlpha2;
 }
